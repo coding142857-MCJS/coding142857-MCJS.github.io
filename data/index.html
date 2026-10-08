@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://play.mcjs.cc/1.8.8/ -->
+<html style="width:100%;height:100%;background-color:black;" lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="WebMC">
+    <meta name="keywords" content="mcjs.link, mcjs, mc.js, eaglercraft, mc, webmc">
+    <title>MCJS 1.8.8</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+        
+        .protocol-box {
+            background: #ffffff;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        
+        .protocol-box h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        .protocol-content {
+            height: 230px;
+            overflow-y: auto;
+            border: 1px solid #e8e8e8;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: #fafafa;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .btn-group {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .agree-btn {
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .agree-btn:hover {
+            background-color: #40a9ff;
+        }
+    </style>
+    <link type="image/png" rel="shortcut icon" href="favicon.png">
+    <script type="text/javascript" src="classes.js"></script>
+    <script type="text/javascript">
+        "use strict";
+        window.addEventListener("load", function() {
+            if (window.location.href.indexOf("file:") === 0) {
+                alert("HTTP please, do not open this file locally, run a local HTTP server and load it via HTTP");
+            } else {
+                var relayId = 3;
+                window.eaglercraftXOpts = {
+                    demoMode: false,
+                    container: "game_frame",
+                    assetsURI: "assets.epk",
+                    localesURI: "lang/",
+                    lang: "zh_CN",
+                    worldsDB: "worlds",
+                    logInvalidCerts: false,
+                    crashOnUncaughtExceptions: false,
+                    allowUpdateDL: false,
+                    allowUpdateSvc: false,
+                    allowFNAWSkins: false,
+                    allowVoiceClient: false,
+                    checkRelaysForUpdates: false,
+                    enableMinceraft: false,
+                    showBootMenuOnLaunch: false,
+                    allowBootMenu: false,
+                    relays: [{
+                        addr: "wss://relay.deev.is/",
+                        comment: "lax1dude relay #1",
+                        primary: relayId === 0
+                    }, {
+                        addr: "wss://relay.lax1dude.net/",
+                        comment: "lax1dude relay #2",
+                        primary: relayId === 1
+                    }, {
+                        addr: "wss://relay.shhnowisnottheti.me/",
+                        comment: "ayunami relay #1",
+                        primary: relayId === 2
+                    }, {
+                        addr: "wss://relay.mcjs.link/",
+                        comment: "MCJS Public Remote Relay",
+                        primary: relayId === 3
+                    }]
+                };
+                var q = window.location.search;
+                if ((typeof q === "string") && q[0] === "?" && (typeof window.URLSearchParams !== "undefined")) {
+                    q = new window.URLSearchParams(q);
+                    var s = q.get("server");
+                    if (s) window.eaglercraftXOpts.joinServer = s;
+                }
+                main();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="overlay" id="protocolModal" style="opacity: 0; display: none;">
+        <div class="protocol-box">
+            <h2>用户许可协议</h2>
+            <div class="protocol-content">
+                <p><strong>【MCJS重要公告】請自覺遵守社區規範</strong></p>
+                <p>親愛的用戶，本站近期因部分用戶濫用平台服務而正面臨巨大的生存危機（我們的網站頻繁被舉報封鎖），導致了部分玩家的遊戲體驗變差。</p>
+                <p>為了給所有玩家一個更好的體驗，我們不得不提醒大家請自覺遵守社群規範。所以在開始遊戲之前，請先確保您同意：</p>
+                <p>1. 禁止以任何違規內容作為玩家 ID 使用者名稱。禁止上傳使用含有任何違規內容的皮膚/材質包</p>
+                <p>2. 禁止濫用公益 P2P 中繼聯機伺服器，包括但不限於：大量 Ping ，不停切換刷流量，將聯機伺服器用於非遊戲聯機用途等。一經發現將永久封鎖違規用戶的中繼聯機伺服器使用權限。</p>
+                <p>3. 禁止創建或加入任何可能有違規內容的多人遊戲伺服器。一經發現將永久封鎖違規用戶的中繼聯機伺服器使用權限。</p>
+                <p>4. 禁止在遊戲內發送任何違法、違規、侵權、垃圾廣告或具有攻擊性的言論。使用者需對自己在遊戲內發布的所有內容承擔全部法律責任。</p>
+                <p>5. 禁止二次倒賣收費，MCJS 永久免費。禁止將此遊戲用於任何的商業用途或造成任何版權問題。</p>
+                <p>請使用者放心，本網站是純靜態 HTML 網站，單機存檔不連網且加密保存在本地，線上也是 P2P 直連不經過 MCJS 伺服器。我們看不到您的任何遊戲內容也無法幹預，更不會收集或上傳任何的用戶訊息，所以您得為您自己的行為負責，並對自己在遊戲內發布的所有內容承擔全部法律責任。 </p>
+                <p>MCJS 嚴格遵守您所在地的法律法規，MCJS 上不會有任何的詐騙等違規內容，MCJS 永久免費不會向您收費！若本網站被劫持篡改/加載緩慢/經常崩潰，請立即關閉並切換鏡像站（備用路線）！ </p>
+                <p>若您同意，請點選「我同意」後，可繼續遊戲，否則請登出本網頁。網站生存不易，發言前請三思。謝謝配合！</p>
+            </div>
+            <div class="btn-group">
+                <button class="agree-btn" id="agreeBtn">我同意</button>
+            </div>
+        </div>
+    </div>
+    <div style="position:fixed;width:100%;height:100%;overflow:hidden;background-color:gray;" id="game_frame" class="_eaglercraftX_root_element">
+        <div class="_eaglercraftX_wrapper_element" style="position: relative; width: 100%; height: 100%; overflow: hidden;"><canvas class="_eaglercraftX_canvas_element" width="1920" height="826" style="width: 100%; height: 100%; z-index: 1; image-rendering: pixelated; touch-action: pan-x pan-y; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: default;"></canvas>
+            <div class="_eaglercraftX_keyboard_open_zone" style="display: none; position: absolute; background-color: transparent; top: 0px; left: 0px; width: 0px; height: 0px; z-index: 100; touch-action: pan-x pan-y; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"></div><audio class="_eaglercraftX_keepalive_hack" style="display:none;" loop=""><source type="audio/wav" src="blob:https://play.mcjs.cc/3418aa9f-e93d-4e03-b32d-fb3c8e839f56"></audio><input type="file" accept=".epk" style="position: absolute; left: 0px; top: 0px; z-index: -100;"></div>
+    </div>
+    <script>
+        const agreeBtn = document.getElementById('agreeBtn');
+        const protocolModal = document.getElementById('protocolModal');
+        agreeBtn.addEventListener('click', function() {
+            protocolModal.style.opacity = '0';
+            setTimeout(() => {
+                protocolModal.style.display = 'none';
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>
